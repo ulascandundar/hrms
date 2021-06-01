@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +25,6 @@ import lombok.NoArgsConstructor;
 public class JobAdvertisement {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
