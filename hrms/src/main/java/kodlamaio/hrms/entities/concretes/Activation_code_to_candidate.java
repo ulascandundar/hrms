@@ -6,7 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="activation_code_to_candidates")
 public class Activation_code_to_candidate {
 
@@ -19,25 +26,5 @@ public class Activation_code_to_candidate {
 	@Column(name ="cadidate_id")
 	private int cadidate_id;
 
-	public Activation_code_to_candidate(int id, int cadidate_id) {
-		super();
-		this.id = id;
-		this.cadidate_id = cadidate_id;
-	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getCadidate_id() {
-		return cadidate_id;
-	}
-
-	public void setCadidate_id(int cadidate_id) {
-		this.cadidate_id = cadidate_id;
-	}
 }

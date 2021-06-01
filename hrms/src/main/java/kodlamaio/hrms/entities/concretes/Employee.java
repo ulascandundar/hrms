@@ -6,7 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="employees")
 public class Employee {
 
@@ -21,29 +28,6 @@ public class Employee {
 	@Column(name ="last_name")
 	private String last_name;
 	
-	public Employee(int user_id, String first_name, String last_name) {
-		super();
-		this.user_id = user_id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-	}
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-	public String getFirst_name() {
-		return first_name;
-	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-	public String getLast_name() {
-		return last_name;
-	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
+
 	
 }

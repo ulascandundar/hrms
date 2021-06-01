@@ -2,18 +2,27 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="users")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer"})
 public class User {
 	
 	@Id
-	@GeneratedValue
 	@Column(name ="id")
-	private int id;
+	private int userId;
 	
 	@Column(name ="email")
 	private String email;
@@ -21,35 +30,6 @@ public class User {
 	@Column(name ="password")
 	private String password;
 
-	public User(int id, String email, String password) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	@OneToOne(mappedBy = "user")
+	private Employer employer;
 }
