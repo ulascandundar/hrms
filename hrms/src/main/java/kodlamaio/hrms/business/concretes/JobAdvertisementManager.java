@@ -14,6 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithCityDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
@@ -69,6 +70,11 @@ private JobAdvertisementDao jobAdvertisementDao;
 	@Override
 	public DataResult<JobAdvertisement> findById(int id) {
 		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getOne(id));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementWithCityDto>> JobAdvertisementWithCityDto() {
+		return new SuccessDataResult<List<JobAdvertisementWithCityDto>>(this.jobAdvertisementDao.getJobWithCityDetails(),"Listelendi");
 	}
 
 }

@@ -16,6 +16,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithCityDto;
 
 @RestController
 @RequestMapping("/api/jobAdvertisements")
@@ -52,5 +53,10 @@ public class JobAdvertisementsController  {
 	@DeleteMapping("/delete")
 	public Result delete(@RequestParam int id) {
 		return this.jobAdvertisementService.delete(id);
+	}
+	
+	@GetMapping("/JobAdvertisementWithCityDto")
+	public DataResult<List<JobAdvertisementWithCityDto>> JobAdvertisementWithCityDto(){
+		return this.jobAdvertisementService.JobAdvertisementWithCityDto();
 	}
 }

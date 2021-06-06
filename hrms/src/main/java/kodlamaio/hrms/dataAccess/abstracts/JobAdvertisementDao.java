@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithCityDto;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer>{
 
@@ -26,4 +27,9 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 			+ "(e.companyName, jt.title, j.numberOfOpenPositions, j.postedDate, j.applicationDeadline)"
 			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.jobTitle jt where e.companyName=:companyName And j.isActive=true")
 	List<JobAdvertisementDto> findByIsActiveAndEmployer_CompanyName(String companyName);
+	
+	
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementWithCityDto(j.id,j.jobDescription,c.cityName)"
+			+ "From City c Inner Join c.jobAdvertisement j")
+	List<JobAdvertisementWithCityDto> getJobWithCityDetails();
 }
