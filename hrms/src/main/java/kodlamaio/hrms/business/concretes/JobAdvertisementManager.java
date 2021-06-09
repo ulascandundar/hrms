@@ -77,4 +77,9 @@ private JobAdvertisementDao jobAdvertisementDao;
 		return new SuccessDataResult<List<JobAdvertisementWithCityDto>>(this.jobAdvertisementDao.getJobWithCityDetails(),"Listelendi");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getAll() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll());
+	}
+
 }

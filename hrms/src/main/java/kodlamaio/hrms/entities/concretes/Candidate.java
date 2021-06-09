@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="candidates")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","images"})
 public class Candidate {
 
 	@Id
@@ -49,6 +53,7 @@ public class Candidate {
 	@Column(name ="birth_date")
 	private Date birth_date;
 	
+	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
@@ -62,19 +67,23 @@ public class Candidate {
     @Column(name = "github_account")
     private String githubAccount;
     
+    @JsonIgnore
     @OneToMany(targetEntity = KnownLanguage.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "candidate")
     private List<KnownLanguage> languages;
     
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate",targetEntity = AttendedSchool.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AttendedSchool> attendedSchools;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkExperience> workExperiences;
     
+    @JsonIgnore
     @ManyToOne(targetEntity = JobPosition.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "job_position_id", referencedColumnName = "id")
     private JobPosition jobPosition;

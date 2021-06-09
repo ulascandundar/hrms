@@ -26,9 +26,9 @@ public class CloudinaryAdapterService implements PhotoUploadHelper{
 	private Map<String, String> valuesMap = new HashMap<>();
 
     	public CloudinaryAdapterService() {
-    		valuesMap.put("cloud_name","****" );
-    		valuesMap.put("api_key", "****" );
-    		valuesMap.put("api_secret","******" );
+    		valuesMap.put("cloud_name","dmb6n8ddz" );
+    		valuesMap.put("api_key", "822477711891564" );
+    		valuesMap.put("api_secret","-zGOBGH2lt2c0eXs9paYwXv7zIM" );
     		cloudinary = new Cloudinary(valuesMap);
     	}
 	

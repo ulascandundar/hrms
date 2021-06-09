@@ -18,4 +18,5 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisementDto>> findByIsActiveAndApplicationDeadline();
 	DataResult<List<JobAdvertisementDto>> findByIsActiveAndCompanyName(String companyName);
 	DataResult<List<JobAdvertisementWithCityDto>> JobAdvertisementWithCityDto();
+	DataResult<List<JobAdvertisement>> getAll();
 }
