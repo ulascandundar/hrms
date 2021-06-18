@@ -53,9 +53,9 @@ public class Candidate {
 	@Column(name ="birth_date")
 	private Date birth_date;
 	
-	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name = "user_id",referencedColumnName = "id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private User user;
 	
 	@Column(name = "nationality_id")

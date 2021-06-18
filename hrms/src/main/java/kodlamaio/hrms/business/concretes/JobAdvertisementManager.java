@@ -12,7 +12,12 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
+import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.concretes.JobTitle;
+import kodlamaio.hrms.entities.concretes.WorkTime;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementAdd;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementWithCityDto;
 
@@ -28,12 +33,17 @@ private JobAdvertisementDao jobAdvertisementDao;
 	}
 
 	@Override
-	public Result add(JobAdvertisement jobAdvertisement) {
-		if (jobAdvertisementDao.findById(jobAdvertisement.getId()) != null) {
+	public Result add(JobAdvertisementAdd jobAdvertisementAdd) {
+		if (jobAdvertisementAdd.getCityId()>1000) {
 			return new ErrorResult("this job advertisement already exists.");
 		}else {
+			JobAdvertisement jobAdvertisement=new JobAdvertisement( 10, jobAdvertisementAdd.getJobDescription(),jobAdvertisementAdd.getMinSalary(),jobAdvertisementAdd.getMaxSalary(),
+					jobAdvertisementAdd.getOpenPositionCount(),jobAdvertisementAdd.getApplicationDeadline(),jobAdvertisementAdd.getPosted_date(),false,
+					null,
+					new JobTitle(jobAdvertisementAdd.getJobPositionId(),null,null),
+					new City(jobAdvertisementAdd.getCityId(),null,null),new WorkTime(jobAdvertisementAdd.getTypeOfWorkingId(),null,null));
 			this.jobAdvertisementDao.save(jobAdvertisement);
-			return new SuccessResult("Job advertisement has been added.");
+			return new SuccessResult();
 		}
 		
 	}
